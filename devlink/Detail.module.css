@@ -1,0 +1,11 @@
+.bed {
+  margin-bottom: 10px;
+  color: hsla(0, 0.00%, 41.55%, 1.00);
+}
+
+#w-node-_5a1fafe9-3ed9-7b39-fb78-7788a00e0232-a00e0232 {
+  grid-column-start: span 2;
+  grid-column-end: span 2;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}

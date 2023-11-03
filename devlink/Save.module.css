@@ -1,0 +1,18 @@
+.save {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.image-3 {
+  width: 20px;
+  height: 20px;
+  max-width: none;
+}
+
+#w-node-_26017a38-0d54-92e8-cfa5-377294275edc-94275edc {
+  grid-column-start: span 1;
+  grid-column-end: span 1;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}

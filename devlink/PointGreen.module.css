@@ -1,0 +1,26 @@
+.bigger-green {
+  display: flex;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 100px;
+
+  background-color: hsla(140.7079646017699, 56.78%, 60.98%, 0.39);
+}
+
+.green {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  border-radius: 100px;
+
+  background-color: hsla(140.7079646017699, 56.78%, 60.98%, 1.00);
+}

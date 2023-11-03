@@ -1,0 +1,13 @@
+.div-price {
+  display: flex;
+  height: 20px;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+#w-node-ce94eb6c-a3e5-4e16-2321-14176b82f097-6b82f097 {
+  grid-column-start: span 2;
+  grid-column-end: span 2;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}

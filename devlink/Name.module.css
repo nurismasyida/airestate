@@ -1,0 +1,12 @@
+.name {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: hsla(0, 0.90%, 6.17%, 1.00);
+}
+
+#w-node-_8d8979e1-b819-95ce-7d21-fc6e97e6e9a5-97e6e9a5 {
+  grid-column-start: span 2;
+  grid-column-end: span 2;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}

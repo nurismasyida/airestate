@@ -1,0 +1,15 @@
+.menu {
+  display: flex;
+  width: 400px;
+  height: 20px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+
+#w-node-d1190aa0-d8ee-2c9f-239e-a20622595a58-22595a58 {
+  grid-column-start: span 1;
+  grid-column-end: span 1;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+  justify-self: end;
+}

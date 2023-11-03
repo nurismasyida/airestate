@@ -1,0 +1,17 @@
+.link-block {
+  width: 20px;
+  height: 20px;
+}
+
+.image-4 {
+  width: 20px;
+  height: 20px;
+  max-width: none;
+}
+
+#w-node-da51e1db-48cd-2fbc-310a-a914b7c1b326-b7c1b326 {
+  grid-column-start: span 1;
+  grid-column-end: span 1;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}

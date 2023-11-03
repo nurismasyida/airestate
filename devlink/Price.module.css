@@ -1,0 +1,11 @@
+.price {
+  margin-bottom: 0px;
+  color: hsla(0, 0.00%, 0.00%, 1.00);
+}
+
+#w-node-c73f71ff-44a5-efc1-fbc8-dcafb1ee2b27-b1ee2b27 {
+  grid-column-start: span 2;
+  grid-column-end: span 2;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}
