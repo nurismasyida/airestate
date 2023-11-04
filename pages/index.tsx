@@ -6,7 +6,6 @@ import { Info } from "../devlink";
 import { Img, Name, Detail, Price, PointGreen, Menu, PriceDiv } from "../devlink";
 import { Basemap, NavbarTest } from "../devlink";
 
-
 interface Listing {
   lat: number;
   lng: number;
@@ -16,8 +15,7 @@ interface Listing {
   image: string;
 }
 
-const listings: Listing[] = [
-
+const listings = [
   {
     lat: 40.7128,
     lng: -74.0060,
@@ -94,7 +92,8 @@ const listings: Listing[] = [
 ];
 
 export default function Page() {
-  const [selectedListing, setSelectedListing] = useState(null);
+  const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
+  let map; // Define map as a variable to check if it's already initialized
 
   const handleMarkerClick = (listing: Listing) => {
     setSelectedListing(listing);
@@ -102,11 +101,11 @@ export default function Page() {
 
   useEffect(() => {
     // Check if 'window' is defined (client-side) before using Leaflet
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && !map) {
       const L = require('leaflet'); // Import Leaflet here
 
       // Create a Leaflet map
-      const map = L.map('map').setView([40.7128, -74.0060], 15);
+      map = L.map('map').setView([40.7128, -74.0060], 15);
 
       // Add a TileLayer
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -130,7 +129,7 @@ export default function Page() {
         });
       });
     }
-  }, []);
+  }, [map]); // Rerun the effect only if 'map' changes
 
   return (
     <>
@@ -163,6 +162,7 @@ export default function Page() {
           }
         `}
       </style>
+
       <Basemap
         mapbase={
           <div id="map" style={{ height: '100vh', width: 'auto' }}>
