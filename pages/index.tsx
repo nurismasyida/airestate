@@ -175,10 +175,7 @@ export default function Page() {
                   <Img img={selectedListing.image} />
                   <Name name={selectedListing.name} />
                   <Detail detail={selectedListing.furniture}/>
-                  <PriceDiv>
-                    <PointGreen />
-                    <Price price={selectedListing.price}/>
-                  </PriceDiv>
+                  <PriceDiv/>
                 </div>
               )} />
             )}
