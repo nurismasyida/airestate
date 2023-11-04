@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Info } from "../devlink";
-import { Img, Name, Detail, Price, PointGreen, Menu, PriceDiv } from "../devlink";
+import { Img,PriceDiv, Name, Detail, Price, PointGreen, Menu } from "../devlink";
 import { Basemap, NavbarTest } from "../devlink";
 
 interface Listing {
@@ -15,13 +15,13 @@ interface Listing {
   image: string;
 }
 
-const listings = [
+const listings: Listing[] = [
   {
     lat: 40.7128,
     lng: -74.0060,
     name: 'Sunnydale Heights',
     price: '$1,200,000',
-    furniture: '4 bed | 4 bath | 5635 sqft',
+    furniture: '4 bed | 3 bath | 5635 sqft',
     image: '/img/1.png',
   },
   {
@@ -93,7 +93,8 @@ const listings = [
 
 export default function Page() {
   const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
-  let map; // Define map as a variable to check if it's already initialized
+  let map: L.Map | undefined; // Declare 'map' with an explicit type
+
 
   const handleMarkerClick = (listing: Listing) => {
     setSelectedListing(listing);
@@ -101,7 +102,7 @@ export default function Page() {
 
   useEffect(() => {
     // Check if 'window' is defined (client-side) before using Leaflet
-    if (typeof window !== 'undefined' && !map) {
+    if (typeof window !== 'undefined') {
       const L = require('leaflet'); // Import Leaflet here
 
       // Create a Leaflet map
