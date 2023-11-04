@@ -6,7 +6,18 @@ import { Info } from "../devlink";
 import { Img, Name, Detail, Price, PointGreen, Menu, PriceDiv } from "../devlink";
 import { Basemap, NavbarTest } from "../devlink";
 
-const listings = [
+
+interface Listing {
+  lat: number;
+  lng: number;
+  name: string;
+  price: string;
+  furniture: string;
+  image: string;
+}
+
+const listings: Listing[] = [
+
   {
     lat: 40.7128,
     lng: -74.0060,
@@ -85,7 +96,7 @@ const listings = [
 export default function Page() {
   const [selectedListing, setSelectedListing] = useState(null);
 
-  const handleMarkerClick = (listing) => {
+  const handleMarkerClick = (listing: Listing) => {
     setSelectedListing(listing);
   };
 
