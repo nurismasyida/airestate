@@ -21,7 +21,7 @@ const listings = [
     lng: -74.0060,
     name: 'Sunnydale Heights',
     price: '$1,200,000',
-    furniture: '4 bed | 5 bath | 5635 sqft',
+    furniture: '4 bed | 4 bath | 5635 sqft',
     image: '/img/1.png',
   },
   {
