@@ -1,21 +1,10 @@
-import React, { useState } from 'react';
-import { Basemap } from "../devlink"
-import { NavbarTest } from "../devlink"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Info } from "../devlink";
-import * as _Builtin from "../devlink";
-import { Img } from "../devlink";
-import { Name } from "../devlink";
-import { Detail } from "../devlink";
-import { Price } from "../devlink";
-import * as _utils from "../devlink";
-import _styles from "./Info.module.css";
-import { Menu } from "../devlink";
-import { PriceDiv } from "../devlink";
-import { PointGreen } from "../devlink";
-
+import { Img, Name, Detail, Price, PointGreen, Menu, PriceDiv } from "../devlink";
+import { Basemap, NavbarTest } from "../devlink";
 
 const listings = [
   {
@@ -93,8 +82,6 @@ const listings = [
   },
 ];
 
-
-
 export default function Page() {
   const [selectedListing, setSelectedListing] = useState(null);
 
@@ -102,89 +89,88 @@ export default function Page() {
     setSelectedListing(listing);
   };
 
+  useEffect(() => {
+    // Check if 'window' is defined (client-side) before using Leaflet
+    if (typeof window !== 'undefined') {
+      const L = require('leaflet'); // Import Leaflet here
+
+      // Create a Leaflet map
+      const map = L.map('map').setView([40.7128, -74.0060], 15);
+
+      // Add a TileLayer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Add custom icons and event handlers for markers
+      listings.forEach((list, index) => {
+        const marker = L.marker([list.lat, list.lng], {
+          icon: L.divIcon({
+            className: 'custom-icon',
+            html: list.price,
+            iconSize: [100, 15],
+          }),
+        });
+
+        marker.addTo(map);
+
+        marker.on('click', () => {
+          handleMarkerClick(list);
+        });
+      });
+    }
+  }, []);
+
   return (
     <>
+      <style>
+        {`
+          .leaflet-container a {
+            color: black;
+            font-weight: normal;
+          }
+          .custom-icon {
+            position: relative;
+            z-index: 99999;
+            display: block;
+            width: 100px;
+            height: 25px;
+            min-height: 25px;
+            min-width: 100px;
+            margin: auto;
+            padding: 3px;
+            text-align: center;
+            color: white;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgb(30, 29, 29);
+            border-radius: 30px;
+            background-color: hsla(0, 0%, 0%, 0.689);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            object-fit: fill;
+          }
+        `}
+      </style>
       <Basemap
         mapbase={
-          <MapContainer
-            style={{ height: '100vh', width: 'auto' }}
-            center={[40.7128, -74.0060]}
-            zoom={15}
-          >
+          <div id="map" style={{ height: '100vh', width: 'auto' }}>
             <NavbarTest />
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <style>
-              {`
-                .leaflet-container a{
-                  color: black;
-                  font-weight: normal;
-                }
-                .custom-icon {
-                  position: relative;
-                  z-index: 99999;
-
-                  display: block;
-                  width: 100px;
-                  height: 25px;
-                  min-height: 25px;
-                  min-width: 100px;
-                  margin: auto;
-                  padding: 3px;
-                  text-align: center;
-                  color: white;
-
-                  border-style: solid;
-                  border-width: 1px;
-                  border-color: rgb(30, 29, 29);
-                  border-radius: 30px;
-
-                  background-color: hsla(0, 0%, 0%, 0.689);
-
-                  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
-
-                  backdrop-filter: blur(5px);
-
-                  object-fit: fill;
-                }
-              `}
-            </style>
-
-            {listings.map((list, index) => (
-              <Marker
-                key={index}
-                position={[list.lat, list.lng]}
-                icon={L.divIcon({
-                  className: 'custom-icon',
-                  html: list.price,
-                  iconSize: [100, 15],
-                })}
-                eventHandlers={{
-                  click: () => {
-                    handleMarkerClick(list);
-                  },
-                }}
-              />
-            ))}
-          {selectedListing && (
-            <Info info={selectedListing && (
-              <div id="property-details">
-                <Menu />
-                <Img img={selectedListing.image} />
-                <Name name={selectedListing.name} />
-                <Detail detail={selectedListing.furniture}/>
-                <PriceDiv>
-                  <PointGreen />
-                  <Price price={selectedListing.price}/>
-                </PriceDiv>
-              </div>
-            )} />
-            // <Info/>
-              
-          )}
-          </MapContainer>
+            {selectedListing && (
+              <Info info={selectedListing && (
+                <div id="property-details">
+                  <Menu />
+                  <Img img={selectedListing.image} />
+                  <Name name={selectedListing.name} />
+                  <Detail detail={selectedListing.furniture}/>
+                  <PriceDiv>
+                    <PointGreen />
+                    <Price price={selectedListing.price}/>
+                  </PriceDiv>
+                </div>
+              )} />
+            )}
+          </div>
         }
       />
     </>
